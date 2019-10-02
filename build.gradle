@@ -1,0 +1,48 @@
+buildscript {
+	ext {
+		springBootVersion = '2.1.8.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+subprojects {
+	apply plugin: "java"
+	apply plugin: "io.spring.dependency-management"
+
+	repositories {
+		mavenCentral()
+	}
+
+	group = 'com.github.miyasumas'
+	version = '0.0.1-SNAPSHOT'
+	sourceCompatibility = '11'
+	targetCompatibility = '11'
+
+	configurations {
+		compileOnly {
+			extendsFrom annotationProcessor
+		}
+	}
+
+	dependencies {
+		compileOnly 'org.projectlombok:lombok'
+		annotationProcessor 'org.projectlombok:lombok'
+		testImplementation 'org.junit.jupiter:junit-jupiter-api'
+		testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+	}
+
+	dependencyManagement {
+		imports {
+			mavenBom "org.springframework.boot:spring-boot-dependencies:$springBootVersion"
+		}
+	}
+
+	test {
+		useJUnitPlatform()
+	}
+}

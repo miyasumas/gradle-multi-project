@@ -1,0 +1,11 @@
+apply plugin: "org.springframework.boot"
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	implementation project(':common')
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude module: 'junit'	// JUnit5使いたいから
+	}
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+}

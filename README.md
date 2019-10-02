@@ -1,2 +1,2 @@
-# gradle-multi-project
+# gradle-multiproject
 Gradle でマルチプロジェクトを試す
